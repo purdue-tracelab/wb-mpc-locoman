@@ -3,6 +3,7 @@ from os.path import dirname, abspath
 import pinocchio as pin
 from pinocchio.robot_wrapper import RobotWrapper
 
+from .combined_urdf import build_go2_yam_urdf
 from .gait_sequence import GaitSequence
 
 
@@ -75,3 +76,26 @@ class B2_Z1(Robot):
 
         # Weight distribution for reference forces (approx hardware measurement)
         self.front_force_ratio = 0.4
+
+
+class Go2_YAM(Robot):
+    def __init__(self, reference_pose="standing", arm_joints=6):
+        urdf_path = build_go2_yam_urdf()
+        srdf_path = "robots/go2_yam_description/srdf/go2_yam.srdf"
+        joint_names = [f"joint{index}" for index in range(arm_joints + 1, 9)]
+        lock_joints = [self._joint_id(urdf_path, name) for name in joint_names]
+
+        super().__init__(urdf_path, srdf_path, reference_pose, lock_joints=lock_joints)
+        self.arm_joints = arm_joints
+        if self.arm_joints > 0:
+            self.arm_ee_frame = self.model.getFrameId("gripper")
+            self.nf += 3
+
+        self.front_force_ratio = 0.4
+
+    @staticmethod
+    def _joint_id(urdf_path, joint_name):
+        import pinocchio as pin
+
+        model = pin.buildModelFromUrdf(urdf_path, pin.JointModelFreeFlyer())
+        return model.getJointId(joint_name)

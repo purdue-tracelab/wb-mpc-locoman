@@ -10,7 +10,8 @@ from utils.visualization import visualize_forces
 from optimization import make_ocp
 
 # Robot params
-robot = B2_Z1(reference_pose="standing_with_arm_up", arm_joints=4)
+# robot = B2_Z1(reference_pose="standing_with_arm_up", arm_joints=4)
+robot = Go2_YAM(reference_pose="standing", arm_joints=6)
 dynamics ="whole_body_rnea"  # see args.py for options
 
 # Tracking targets
@@ -164,9 +165,10 @@ def main():
 
         fig, axs = plt.subplots(3, 1, figsize=(10, 12))
         labels = ["FL hip", "FL thigh", "FL calf", "FR hip", "FR thigh", "FR calf",
-                  "RL hip", "RL thigh", "RL calf", "RR hip", "RR thigh", "RR calf",
-                  "Arm 1", "Arm 2", "Arm 3", "Arm 4"]
-
+              "RL hip", "RL thigh", "RL calf", "RR hip", "RR thigh", "RR calf",
+              "Arm 1", "Arm 2", "Arm 3", "Arm 4", "Arm 5", "Arm 6"]
+        # Added Arm5 + Arm6
+        
         axs[0].set_title("Joint positions (q)")
         for j in range(robot.nj):
             # Ignore base (quaternion)

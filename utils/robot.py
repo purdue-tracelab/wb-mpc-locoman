@@ -3,7 +3,6 @@ from os.path import dirname, abspath
 import pinocchio as pin
 from pinocchio.robot_wrapper import RobotWrapper
 
-from .combined_urdf import build_go2_yam_urdf
 from .gait_sequence import GaitSequence
 
 
@@ -80,7 +79,7 @@ class B2_Z1(Robot):
 
 class Go2_YAM(Robot):
     def __init__(self, reference_pose="standing", arm_joints=6):
-        urdf_path = build_go2_yam_urdf()
+        urdf_path = "robots/go2_yam_description/urdf/combined.urdf"
         srdf_path = "robots/go2_yam_description/srdf/go2_yam.srdf"
         joint_names = [f"joint{index}" for index in range(arm_joints + 1, 9)]
         lock_joints = [self._joint_id(urdf_path, name) for name in joint_names]

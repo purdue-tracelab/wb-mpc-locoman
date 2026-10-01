@@ -1,0 +1,1065 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="go2_yam_pro">
+  <link name="base">
+    <inertial>
+      <origin xyz="0.021112 0 -0.005366" rpy="0 0 0" />
+      <mass value="6.921" />
+      <inertia ixx="0.02448" ixy="0.00012166" ixz="0.0014849" iyy="0.098077" iyz="-3.12E-05" izz="0.107" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/base.dae" />
+      </geometry>
+      <material name="深色橡胶_001-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="白色logo_001-effect">
+        <color rgba="1 1 1 1" />
+      </material>
+      <material name="黑色贴纸_007-effect">
+        <color rgba="0.009018 0.009018 0.009018 1" />
+      </material>
+      <material name="黑色金属_007-effect">
+        <color rgba="0.01341 0.01341 0.01341 1" />
+      </material>
+      <material name="黑色塑料_003-effect">
+        <color rgba="0.023455 0.023455 0.023455 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.3762 0.0935 0.114" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="Head_upper">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.001" />
+      <inertia ixx="9.6e-06" ixy="0" ixz="0" iyy="9.6e-06" iyz="0" izz="9.6e-06" />
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.09" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Head_upper_joint" type="fixed" dont_collapse="true">
+    <origin xyz="0.285 0 0.01" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="Head_upper" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="Head_lower">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.001" />
+      <inertia ixx="9.6e-06" ixy="0" ixz="0" iyy="9.6e-06" iyz="0" izz="9.6e-06" />
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.047" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Head_lower_joint" type="fixed" dont_collapse="true">
+    <origin xyz="0.008 0 -0.07" rpy="0 0 0" />
+    <parent link="Head_upper" />
+    <child link="Head_lower" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="FL_hip">
+    <inertial>
+      <origin xyz="-0.0054 0.00194 -0.000105" rpy="0 0 0" />
+      <mass value="0.678" />
+      <inertia ixx="0.00048" ixy="-3.01E-06" ixz="1.11E-06" iyy="0.000884" iyz="-1.42E-06" izz="0.000596" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/hip.dae" />
+      </geometry>
+      <material name="深色橡胶_001-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="Material-effect">
+        <color rgba="0.9 0.95 0.95 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0.08 0" />
+      <geometry>
+        <cylinder length="0.04" radius="0.046" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_hip_joint" type="revolute">
+    <origin xyz="0.1934 0.0465 0" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="FL_hip" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.0472" upper="1.0472" effort="23.7" velocity="30.1" />
+  </joint>
+  <link name="FL_hip_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000111842" ixy="0.0" ixz="0.0" iyy="0.000059647" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="FL_hip_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.11215 0.04675 0" />
+    <parent link="base" />
+    <child link="FL_hip_rotor" />
+  </joint>
+  <link name="FL_thigh">
+    <inertial>
+      <origin xyz="-0.00374 -0.0223 -0.0327" rpy="0 0 0" />
+      <mass value="1.152" />
+      <inertia ixx="0.00584" ixy="8.72E-05" ixz="-0.000289" iyy="0.0058" iyz="0.000808" izz="0.00103" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/thigh.dae" />
+      </geometry>
+      <material name="深色橡胶_003-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="Material_009-effect">
+        <color rgba="0.9 0.95 0.95 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065" />
+      <geometry>
+        <box size="0.213 0.0245 0.034" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_thigh_joint" type="revolute">
+    <origin xyz="0 0.0955 0" rpy="0 0 0" />
+    <parent link="FL_hip" />
+    <child link="FL_thigh" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.5708" upper="3.4907" effort="23.7" velocity="30.1" />
+  </joint>
+  <link name="FL_thigh_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000059647" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="FL_thigh_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.00015 0" />
+    <parent link="FL_hip" />
+    <child link="FL_thigh_rotor" />
+  </joint>
+  <link name="FL_calf">
+    <inertial>
+      <origin xyz="0.00548 -0.000975 -0.115" rpy="0 0 0" />
+      <mass value="0.154" />
+      <inertia ixx="0.00108" ixy="3.4E-07" ixz="1.72E-05" iyy="0.0011" iyz="8.28E-06" izz="3.29E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/calf.dae" />
+      </geometry>
+      <material name="黑色足端_005-effect">
+        <color rgba="0 0 0 1" />
+      </material>
+      <material name="深色橡胶_005-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 -0.21 0" xyz="0.008 0 -0.06" />
+      <geometry>
+        <cylinder length="0.12" radius="0.012" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_calf_joint" type="revolute">
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <parent link="FL_thigh" />
+    <child link="FL_calf" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.7227" upper="-0.83776" effort="45.43" velocity="15.70" />
+  </joint>
+  <link name="FL_calflower">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.065" radius="0.011" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_calflower_joint" type="fixed">
+    <origin xyz="0.020 0 -0.148" rpy="0 0.05 0" />
+    <parent link="FL_calf" />
+    <child link="FL_calflower" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="FL_calflower1">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.03" radius="0.0155" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_calflower1_joint" type="fixed">
+    <origin xyz="-0.01 0 -0.04" rpy="0 0.48 0" />
+    <parent link="FL_calflower" />
+    <child link="FL_calflower1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="FL_calf_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000059647" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="FL_calf_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.03235 0" />
+    <parent link="FL_thigh" />
+    <child link="FL_calf_rotor" />
+  </joint>
+  <link name="FL_foot">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.04" />
+      <inertia ixx="9.6e-06" ixy="0" ixz="0" iyy="9.6e-06" iyz="0" izz="9.6e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/foot.dae" />
+      </geometry>
+      <material name="黑色足端_007-effect">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.002 0 0" />
+      <geometry>
+        <sphere radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FL_foot_joint" type="fixed" dont_collapse="true">
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <parent link="FL_calf" />
+    <child link="FL_foot" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="FR_hip">
+    <inertial>
+      <origin xyz="-0.0054 -0.00194 -0.000105" rpy="0 0 0" />
+      <mass value="0.678" />
+      <inertia ixx="0.00048" ixy="3.01E-06" ixz="1.11E-06" iyy="0.000884" iyz="1.42E-06" izz="0.000596" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="3.1415 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/hip.dae" />
+      </geometry>
+      <material name="深色橡胶_001-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="Material-effect">
+        <color rgba="0.9 0.95 0.95 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 -0.08 0" />
+      <geometry>
+        <cylinder length="0.04" radius="0.046" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_hip_joint" type="revolute">
+    <origin xyz="0.1934 -0.0465 0" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="FR_hip" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.0472" upper="1.0472" effort="23.7" velocity="30.1" />
+  </joint>
+  <link name="FR_hip_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000111842" ixy="0.0" ixz="0.0" iyy="0.000059647" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="FR_hip_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.11215 -0.04675 0" />
+    <parent link="base" />
+    <child link="FR_hip_rotor" />
+  </joint>
+  <link name="FR_thigh">
+    <inertial>
+      <origin xyz="-0.00374 0.0223 -0.0327" rpy="0 0 0" />
+      <mass value="1.152" />
+      <inertia ixx="0.00584" ixy="-8.72E-05" ixz="-0.000289" iyy="0.0058" iyz="-0.000808" izz="0.00103" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/thigh_mirror.dae" />
+      </geometry>
+      <material name="深色橡胶_012-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="Material_011-effect">
+        <color rgba="0.9 0.95 0.95 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065" />
+      <geometry>
+        <box size="0.213 0.0245 0.034" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_thigh_joint" type="revolute">
+    <origin xyz="0 -0.0955 0" rpy="0 0 0" />
+    <parent link="FR_hip" />
+    <child link="FR_thigh" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.5708" upper="3.4907" effort="23.7" velocity="30.1" />
+  </joint>
+  <link name="FR_thigh_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000059647" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="FR_thigh_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.00015 0" />
+    <parent link="FR_hip" />
+    <child link="FR_thigh_rotor" />
+  </joint>
+  <link name="FR_calf">
+    <inertial>
+      <origin xyz="0.00548 0.000975 -0.115" rpy="0 0 0" />
+      <mass value="0.154" />
+      <inertia ixx="0.00108" ixy="-3.4E-07" ixz="1.72E-05" iyy="0.0011" iyz="-8.28E-06" izz="3.29E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/calf_mirror.dae" />
+      </geometry>
+      <material name="黑色足端_006-effect">
+        <color rgba="0 0 0 1" />
+      </material>
+      <material name="深色橡胶_007-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 -0.2 0" xyz="0.01 0 -0.06" />
+      <geometry>
+        <cylinder length="0.12" radius="0.013" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_calf_joint" type="revolute">
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <parent link="FR_thigh" />
+    <child link="FR_calf" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.7227" upper="-0.83776" effort="45.43" velocity="15.70" />
+  </joint>
+  <link name="FR_calflower">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.065" radius="0.011" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_calflower_joint" type="fixed">
+    <origin xyz="0.020 0 -0.148" rpy="0 0.05 0" />
+    <parent link="FR_calf" />
+    <child link="FR_calflower" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="FR_calflower1">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.03" radius="0.0155" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_calflower1_joint" type="fixed">
+    <origin xyz="-0.01 0 -0.04" rpy="0 0.48 0" />
+    <parent link="FR_calflower" />
+    <child link="FR_calflower1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="FR_calf_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000059647" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="FR_calf_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.03235 0" />
+    <parent link="FR_thigh" />
+    <child link="FR_calf_rotor" />
+  </joint>
+  <link name="FR_foot">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.04" />
+      <inertia ixx="9.6e-06" ixy="0" ixz="0" iyy="9.6e-06" iyz="0" izz="9.6e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/foot.dae" />
+      </geometry>
+      <material name="黑色足端_007-effect">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.002 0 0" />
+      <geometry>
+        <sphere radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FR_foot_joint" type="fixed" dont_collapse="true">
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <parent link="FR_calf" />
+    <child link="FR_foot" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="RL_hip">
+    <inertial>
+      <origin xyz="0.0054 0.00194 -0.000105" rpy="0 0 0" />
+      <mass value="0.678" />
+      <inertia ixx="0.00048" ixy="3.01E-06" ixz="-1.11E-06" iyy="0.000884" iyz="-1.42E-06" izz="0.000596" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 3.1415 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/hip.dae" />
+      </geometry>
+      <material name="深色橡胶_001-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="Material-effect">
+        <color rgba="0.9 0.95 0.95 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0.08 0" />
+      <geometry>
+        <cylinder length="0.04" radius="0.046" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_hip_joint" type="revolute">
+    <origin xyz="-0.1934 0.0465 0" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="RL_hip" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.0472" upper="1.0472" effort="23.7" velocity="30.1" />
+  </joint>
+  <link name="RL_hip_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000111842" ixy="0.0" ixz="0.0" iyy="0.000059647" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="RL_hip_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.11215 0.04675 0" />
+    <parent link="base" />
+    <child link="RL_hip_rotor" />
+  </joint>
+  <link name="RL_thigh">
+    <inertial>
+      <origin xyz="-0.00374 -0.0223 -0.0327" rpy="0 0 0" />
+      <mass value="1.152" />
+      <inertia ixx="0.00584" ixy="8.72E-05" ixz="-0.000289" iyy="0.0058" iyz="0.000808" izz="0.00103" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/thigh.dae" />
+      </geometry>
+      <material name="深色橡胶_003-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="Material_009-effect">
+        <color rgba="0.9 0.95 0.95 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065" />
+      <geometry>
+        <box size="0.213 0.0245 0.034" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_thigh_joint" type="revolute">
+    <origin xyz="0 0.0955 0" rpy="0 0 0" />
+    <parent link="RL_hip" />
+    <child link="RL_thigh" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.5236" upper="4.5379" effort="23.7" velocity="30.1" />
+  </joint>
+  <link name="RL_thigh_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000059647" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="RL_thigh_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.00015 0" />
+    <parent link="RL_hip" />
+    <child link="RL_thigh_rotor" />
+  </joint>
+  <link name="RL_calf">
+    <inertial>
+      <origin xyz="0.00548 -0.000975 -0.115" rpy="0 0 0" />
+      <mass value="0.154" />
+      <inertia ixx="0.00108" ixy="3.4E-07" ixz="1.72E-05" iyy="0.0011" iyz="8.28E-06" izz="3.29E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/calf.dae" />
+      </geometry>
+      <material name="黑色足端_005-effect">
+        <color rgba="0 0 0 1" />
+      </material>
+      <material name="深色橡胶_005-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 -0.2 0" xyz="0.01 0 -0.06" />
+      <geometry>
+        <cylinder length="0.12" radius="0.013" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_calf_joint" type="revolute">
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <parent link="RL_thigh" />
+    <child link="RL_calf" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.7227" upper="-0.83776" effort="45.43" velocity="15.70" />
+  </joint>
+  <link name="RL_calflower">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.065" radius="0.011" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_calflower_joint" type="fixed">
+    <origin xyz="0.020 0 -0.148" rpy="0 0.05 0" />
+    <parent link="RL_calf" />
+    <child link="RL_calflower" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="RL_calflower1">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.03" radius="0.0155" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_calflower1_joint" type="fixed">
+    <origin xyz="-0.01 0 -0.04" rpy="0 0.48 0" />
+    <parent link="RL_calflower" />
+    <child link="RL_calflower1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="RL_calf_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000059647" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="RL_calf_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.03235 0" />
+    <parent link="RL_thigh" />
+    <child link="RL_calf_rotor" />
+  </joint>
+  <link name="RL_foot">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.04" />
+      <inertia ixx="9.6e-06" ixy="0" ixz="0" iyy="9.6e-06" iyz="0" izz="9.6e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/foot.dae" />
+      </geometry>
+      <material name="黑色足端_007-effect">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.002 0 0" />
+      <geometry>
+        <sphere radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RL_foot_joint" type="fixed" dont_collapse="true">
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <parent link="RL_calf" />
+    <child link="RL_foot" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="RR_hip">
+    <inertial>
+      <origin xyz="0.0054 -0.00194 -0.000105" rpy="0 0 0" />
+      <mass value="0.678" />
+      <inertia ixx="0.00048" ixy="-3.01E-06" ixz="-1.11E-06" iyy="0.000884" iyz="1.42E-06" izz="0.000596" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="3.1415 3.1415 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/hip.dae" />
+      </geometry>
+      <material name="深色橡胶_001-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="Material-effect">
+        <color rgba="0.9 0.95 0.95 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 -0.08 0" />
+      <geometry>
+        <cylinder length="0.04" radius="0.046" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_hip_joint" type="revolute">
+    <origin xyz="-0.1934 -0.0465 0" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="RR_hip" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.0472" upper="1.0472" effort="23.7" velocity="30.1" />
+  </joint>
+  <link name="RR_hip_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000111842" ixy="0.0" ixz="0.0" iyy="0.000059647" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="RR_hip_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.11215 -0.04675 0" />
+    <parent link="base" />
+    <child link="RR_hip_rotor" />
+  </joint>
+  <link name="RR_thigh">
+    <inertial>
+      <origin xyz="-0.00374 0.0223 -0.0327" rpy="0 0 0" />
+      <mass value="1.152" />
+      <inertia ixx="0.00584" ixy="-8.72E-05" ixz="-0.000289" iyy="0.0058" iyz="-0.000808" izz="0.00103" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/thigh_mirror.dae" />
+      </geometry>
+      <material name="深色橡胶_012-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+      <material name="Material_011-effect">
+        <color rgba="0.9 0.95 0.95 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065" />
+      <geometry>
+        <box size="0.213 0.0245 0.034" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_thigh_joint" type="revolute">
+    <origin xyz="0 -0.0955 0" rpy="0 0 0" />
+    <parent link="RR_hip" />
+    <child link="RR_thigh" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.5236" upper="4.5379" effort="23.7" velocity="30.1" />
+  </joint>
+  <link name="RR_thigh_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000059647" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="RR_thigh_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.00015 0" />
+    <parent link="RR_hip" />
+    <child link="RR_thigh_rotor" />
+  </joint>
+  <link name="RR_calf">
+    <inertial>
+      <origin xyz="0.00548 0.000975 -0.115" rpy="0 0 0" />
+      <mass value="0.154" />
+      <inertia ixx="0.00108" ixy="-3.4E-07" ixz="1.72E-05" iyy="0.0011" iyz="-8.28E-06" izz="3.29E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/calf_mirror.dae" />
+      </geometry>
+      <material name="黑色足端_006-effect">
+        <color rgba="0 0 0 1" />
+      </material>
+      <material name="深色橡胶_007-effect">
+        <color rgba="0.6717055 0.6924257 0.7742702 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 -0.2 0" xyz="0.01 0 -0.06" />
+      <geometry>
+        <cylinder length="0.12" radius="0.013" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_calf_joint" type="revolute">
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <parent link="RR_thigh" />
+    <child link="RR_calf" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.7227" upper="-0.83776" effort="45.43" velocity="15.70" />
+  </joint>
+  <link name="RR_calflower">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.065" radius="0.011" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_calflower_joint" type="fixed">
+    <origin xyz="0.020 0 -0.148" rpy="0 0.05 0" />
+    <parent link="RR_calf" />
+    <child link="RR_calflower" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="RR_calflower1">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.03" radius="0.0155" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_calflower1_joint" type="fixed">
+    <origin xyz="-0.01 0 -0.04" rpy="0 0.48 0" />
+    <parent link="RR_calflower" />
+    <child link="RR_calflower1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="RR_calf_rotor">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <mass value="0.089" />
+      <inertia ixx="0.000059647" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="0.000059647" />
+    </inertial>
+  </link>
+  <joint name="RR_calf_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.03235 0" />
+    <parent link="RR_thigh" />
+    <child link="RR_calf_rotor" />
+  </joint>
+  <link name="RR_foot">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.04" />
+      <inertia ixx="9.6e-06" ixy="0" ixz="0" iyy="9.6e-06" iyz="0" izz="9.6e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../unitree_ros/robots/go2_description/dae/foot.dae" />
+      </geometry>
+      <material name="黑色足端_007-effect">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.002 0 0" />
+      <geometry>
+        <sphere radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RR_foot_joint" type="fixed" dont_collapse="true">
+    <origin xyz="0 0 -0.213" rpy="0 0 0" />
+    <parent link="RR_calf" />
+    <child link="RR_foot" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="imu">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="-0.02557 0 0.04232" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="imu" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="radar">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+  </link>
+  <joint name="radar_joint" type="fixed">
+    <origin xyz="0.28945 0 -0.046825" rpy="0 2.8782 0" />
+    <parent link="base" />
+    <child link="radar" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <joint name="front_camera_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.32715 -0.00003 0.04297" />
+    <parent link="base" />
+    <child link="front_camera" />
+  </joint>
+  <link name="front_camera">
+  </link>
+  <link name="yam_base">
+    <inertial>
+      <mass value="0.873654" />
+      <origin xyz="-3.8391e-05 2.4007e-05 0.024768" rpy="3.14159265359 1.5708 0" />
+      <inertia ixx="0.00157059" ixy="-9.4753e-07" ixz="2.04071e-07" iyy="0.000678307" iyz="2.44292e-07" izz="0.00169404" />
+    </inertial>
+    <visual>
+      <origin xyz="0.037496 0.046401 0.1875" rpy="3.14159265359 1.5708 0" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/base.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.647059_0.647059_0.647059_0.000000_0.000000">
+        <color rgba="0.647059 0.647059 0.647059 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="gripper">
+    <inertial>
+      <mass value="0.553219" />
+      <origin xyz="0.000249371 -3.57064e-05 0.0293133" rpy="3.141592653589793 0 1.5707963267948966" />
+      <inertia ixx="0.000409669" ixy="5.44941e-07" ixz="7.91268e-07" iyy="0.000324942" iyz="-4.83959e-06" izz="0.000369249" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.0463995 -0.014 -0.0731" rpy="3.141592653589793 0 1.5707963267948966" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/gripper.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.647059_0.647059_0.647059_0.000000_0.000000">
+        <color rgba="0.647059 0.647059 0.647059 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="link1">
+    <inertial>
+      <mass value="0.101218" />
+      <origin xyz="-0.0233636 -0.00172503 -0.00727828" rpy="0 0 0" />
+      <inertia ixx="0.000114689" ixy="-4.62759e-06" ixz="-1.3427e-05" iyy="4.76603e-05" iyz="-2.58724e-06" izz="0.000125996" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.119501 -0.0464 -0.0374968" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/link1.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.647059_0.647059_0.647059_0.000000_0.000000">
+        <color rgba="0.647059 0.647059 0.647059 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="link2">
+    <inertial>
+      <mass value="1.52608" />
+      <origin xyz="0.000134495 0.0336247 0.129165" rpy="0 0 0" />
+      <inertia ixx="0.0152377" ixy="-1.14963e-08" ixz="-4.49806e-07" iyy="0.0151654" iyz="3.2469e-06" izz="0.00083113" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.0740001 -0.0135 -0.0174977" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/link2.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.647059_0.647059_0.647059_0.000000_0.000000">
+        <color rgba="0.647059 0.647059 0.647059 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="link3">
+    <inertial>
+      <mass value="0.982553" />
+      <origin xyz="-0.0556042 0.0357986 -0.135083" rpy="0 0 0" />
+      <inertia ixx="0.00758945" ixy="4.36076e-06" ixz="-0.00064069" iyy="0.00763097" iyz="-1.09984e-05" izz="0.000937606" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.0740003 -0.01145 -0.281499" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/link3.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.647059_0.647059_0.647059_0.000000_0.000000">
+        <color rgba="0.647059 0.647059 0.647059 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="link4">
+    <inertial>
+      <mass value="0.462165" />
+      <origin xyz="-0.0548959 -0.0350242 -0.0575534" rpy="0 0 0" />
+      <inertia ixx="0.000473594" ixy="3.00819e-05" ixz="-0.000238801" iyy="0.000764022" iyz="2.9261e-05" izz="0.000604492" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.0138003 -0.0802502 -0.0364989" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/link4.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.647059_0.647059_0.647059_0.000000_0.000000">
+        <color rgba="0.647059 0.647059 0.647059 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="link5">
+    <inertial>
+      <mass value="0.403307" />
+      <origin xyz="0.0375847 -3.55003e-05 -0.000825911" rpy="0 0 0" />
+      <inertia ixx="0.000184284" ixy="2.10549e-07" ixz="1.29173e-05" iyy="0.000219791" iyz="-3.49657e-07" izz="0.000181053" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0265 -0.0463995 0.0375" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/link5.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.827451_0.623529_0.784314_0.000000_0.000000">
+        <color rgba="0.827451 0.623529 0.784314 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="tip_left">
+    <inertial>
+      <mass value="0.069657" />
+      <origin xyz="0.014584 -0.042586 -0.0228318" rpy="0 0 0" />
+      <inertia ixx="5.14494e-05" ixy="1.10836e-05" ixz="1.00197e-05" iyy="4.99137e-05" iyz="-1.14425e-05" izz="4.79405e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0.00999321 -0.0914614 0.129783" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/tip_left.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.647059_0.647059_0.647059_0.000000_0.000000">
+        <color rgba="0.647059 0.647059 0.647059 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="tip_right">
+    <inertial>
+      <mass value="0.069657" />
+      <origin xyz="-0.014584 0.042586 -0.0228318" rpy="0 0 0" />
+      <inertia ixx="5.14494e-05" ixy="1.10836e-05" ixz="-1.00197e-05" iyy="4.99137e-05" iyz="1.14425e-05" izz="4.79405e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.0379932 -0.00133753 0.129783" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../../../../i2rt/i2rt/robot_models/arm/yam_pro/v1/assets/tip_right.stl" scale="1 1 1" />
+      </geometry>
+      <material name="0.647059_0.647059_0.647059_0.000000_0.000000">
+        <color rgba="0.647059 0.647059 0.647059 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="joint1" type="revolute">
+    <origin xyz="0 0 0.068" rpy="-3.14159265359 1.5708 0" />
+    <axis xyz="-1 0 0" />
+    <parent link="yam_base" />
+    <child link="link1" />
+    <limit effort="1" velocity="1" lower="-2.61799" upper="3.14159" />
+  </joint>
+  <joint name="joint2" type="revolute">
+    <origin xyz="-0.0455 -0.0329 -0.02" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <parent link="link1" />
+    <child link="link2" />
+    <limit effort="1" velocity="1" lower="0" upper="3.66519" />
+  </joint>
+  <joint name="joint3" type="revolute">
+    <origin xyz="0 -0.00205 0.264" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <parent link="link2" />
+    <child link="link3" />
+    <limit effort="1" velocity="1" lower="0" upper="3.14159" />
+  </joint>
+  <joint name="joint4" type="revolute">
+    <origin xyz="-0.0600003 0.0688 -0.244999" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <parent link="link3" />
+    <child link="link4" />
+    <limit effort="1" velocity="1" lower="-1.69297" upper="1.5708" />
+  </joint>
+  <joint name="joint5" type="revolute">
+    <origin xyz="-0.0403003 -0.0338507 -0.0739989" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <parent link="link4" />
+    <child link="link5" />
+    <limit effort="1" velocity="1" lower="-1.5708" upper="1.5708" />
+  </joint>
+  <joint name="joint6" type="revolute">
+    <origin xyz="0.0404996 0 -0.0356" rpy="3.1415926535897913 0 1.5707963267949048" />
+    <axis xyz="0 0 1" />
+    <parent link="link5" />
+    <child link="gripper" />
+    <limit effort="1" velocity="1" lower="-2.0944" upper="2.0944" />
+  </joint>
+  <joint name="joint7" type="prismatic">
+    <origin xyz="-0.0445119 0.0239931 0.0566829" rpy="3.1415926535897842 0 -1.5708" />
+    <axis xyz="0 1 0" />
+    <parent link="gripper" />
+    <child link="tip_left" />
+    <limit effort="1" velocity="1" lower="-0.04695" upper="0" />
+  </joint>
+  <joint name="joint8" type="prismatic">
+    <origin xyz="0.0445119 -0.0239931 0.0566829" rpy="3.141592653589784 0 -1.5708" />
+    <axis xyz="0 -1 0" />
+    <parent link="gripper" />
+    <child link="tip_right" />
+    <limit effort="1" velocity="1" lower="-0.04695" upper="1.58391e-15" />
+  </joint>
+  <joint name="yam_mount_joint" type="fixed">
+    <origin xyz="0.190 0 0.1027" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="yam_base" />
+  </joint>
+</robot>

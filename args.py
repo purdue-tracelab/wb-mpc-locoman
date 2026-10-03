@@ -23,7 +23,7 @@ SOLVER_ARGS = {
             "structure_detection": "auto",
             "debug": True,
             "fatrop.print_level": 0,
-            "fatrop.max_iter": 10,
+            "fatrop.max_iter": 100,  # Go2 + YAM needs more iterations to converge
             "fatrop.tol": 1e-3,
             "fatrop.mu_init": 1e-4,
             "fatrop.warm_start_init_point": True,

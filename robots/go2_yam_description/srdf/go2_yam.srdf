@@ -39,7 +39,8 @@
         <group name="arm"/>
     </group>
     <group_state name="standing" group="whole_body">
-        <joint name="root_joint" value="0 0 0.55 0 0 0 1"/>
+        <!-- Go2 foot frames lie on z=0 at these leg angles. -->
+        <joint name="root_joint" value="0 0 0.31130991 0 0 0 1"/>
         <joint name="FL_hip_joint" value="0"/>
         <joint name="FL_thigh_joint" value="0.7"/>
         <joint name="FL_calf_joint" value="-1.5"/>
@@ -64,5 +65,5 @@
     <end_effector name="lh_foot" parent_link="RL_foot" group="lh_leg"/>
     <end_effector name="rh_foot" parent_link="RR_foot" group="rh_leg"/>
     <end_effector name="yam_gripper" parent_link="gripper" group="arm"/>
-    <virtual_joint name="root_joint" type="floating" parent_frame="world_frame" child_link="base"/>
+    <virtual_joint name="root_joint" type="floating" parent_frame="world_frame" child_link="base_link"/>
 </robot>

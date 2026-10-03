@@ -1,8 +1,10 @@
 from os.path import dirname, abspath
+from pathlib import Path
 
 import pinocchio as pin
 from pinocchio.robot_wrapper import RobotWrapper
 
+from robots.go2_yam_description.urdf.combined_urdf import build_go2_yam_urdf
 from .gait_sequence import GaitSequence
 
 
@@ -79,10 +81,14 @@ class B2_Z1(Robot):
 
 class Go2_YAM(Robot):
     def __init__(self, reference_pose="standing", arm_joints=6):
+        if not isinstance(arm_joints, int) or not 0 <= arm_joints <= 6:
+            raise ValueError("YAM Pro has six arm joints; arm_joints must be an integer from 0 to 6")
+
         urdf_path = "robots/go2_yam_description/urdf/combined.urdf"
-        srdf_path = "robots/go2_yam_description/srdf/go2_yam.srdf"
-        joint_names = [f"joint{index}" for index in range(arm_joints + 1, 9)]
-        lock_joints = [self._joint_id(urdf_path, name) for name in joint_names]
+        repo_dir = Path(__file__).resolve().parents[1]
+        srdf_path = str(repo_dir / "robots/go2_yam_description/srdf/go2_yam.srdf")
+        # Always lock the two gripper fingers, plus any unused arm joints.
+        lock_joints = [f"joint{index}" for index in range(arm_joints + 1, 9)]
 
         super().__init__(urdf_path, srdf_path, reference_pose, lock_joints=lock_joints)
         self.arm_joints = arm_joints
@@ -90,11 +96,11 @@ class Go2_YAM(Robot):
             self.arm_ee_frame = self.model.getFrameId("gripper")
             self.nf += 3
 
-        self.front_force_ratio = 0.4
-
-    @staticmethod
-    def _joint_id(urdf_path, joint_name):
-        import pinocchio as pin
-
-        model = pin.buildModelFromUrdf(urdf_path, pin.JointModelFreeFlyer())
-        return model.getJointId(joint_name)
+        # Estimate the nominal load split from this robot's center of mass.
+        pin.framesForwardKinematics(self.model, self.data, self.q0)
+        com = pin.centerOfMass(self.model, self.data, self.q0)
+        front_x = sum(self.data.oMf[self.model.getFrameId(f"{leg}_foot")].translation[0]
+                      for leg in ("FL", "FR")) / 2
+        rear_x = sum(self.data.oMf[self.model.getFrameId(f"{leg}_foot")].translation[0]
+                     for leg in ("RL", "RR")) / 2
+        self.front_force_ratio = float((com[0] - rear_x) / (front_x - rear_x))

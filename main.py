@@ -10,7 +10,7 @@ from utils.visualization import visualize_forces
 from optimization import make_ocp
 
 # Robot params
-# robot = B2_Z1(reference_pose="standing_with_arm_up", arm_joints=4)
+# Go2 quadruped with YAM Pro v1; the two gripper joints are locked.
 robot = Go2_YAM(reference_pose="standing", arm_joints=6)
 dynamics ="whole_body_rnea"  # see args.py for options
 

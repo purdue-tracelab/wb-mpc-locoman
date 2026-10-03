@@ -26,6 +26,13 @@ Run the main script:
 python main.py
 ```
 
+The default robot is **Unitree Go2 + I2RT YAM Pro v1**, with six active arm
+joints and both gripper fingers locked. Its source URDFs and meshes are bundled
+in `robots/go2_yam_description/models`; no sibling `unitree_ros` or `i2rt`
+checkout is needed. The combined URDF is generated in the system temporary
+directory. Model sources, mount assumptions, and simulation limits are described
+in [the Go2 + YAM model notes](robots/go2_yam_description/README.md).
+
 Within the script, the following parameters are defined:
 - Robot: Model and dynamics (whole-body or centroidal, see table below)
 - Targets: Base velocity, and arm end-effector velocity/force

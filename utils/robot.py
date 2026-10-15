@@ -84,7 +84,8 @@ class Go2_YAM(Robot):
         if not isinstance(arm_joints, int) or not 0 <= arm_joints <= 6:
             raise ValueError("YAM Pro has six arm joints; arm_joints must be an integer from 0 to 6")
 
-        urdf_path = "robots/go2_yam_description/urdf/combined.urdf"
+        # Generate from bundled models so mesh paths resolve in this checkout.
+        urdf_path = build_go2_yam_urdf()
         repo_dir = Path(__file__).resolve().parents[1]
         srdf_path = str(repo_dir / "robots/go2_yam_description/srdf/go2_yam.srdf")
         # Always lock the two gripper fingers, plus any unused arm joints.
